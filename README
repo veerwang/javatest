@@ -1,0 +1,22 @@
+我的第一个java程序
+
+1.编译java
+javac Main.java
+生成Main.class
+
+2.运行该程序
+javac Main
+注意没有.class
+
+3.final相当于const
+
+4.在环境变量中声明CLASSPATH
+这样在任何一个目录下都可以直接import某个目录了
+
+5.将java程序打包成为可执行的jar包
+a.jar cvf play.jar *.class
+b.vim play.jar 在MANIFEST:中添加Main-Class:Main
+c.chmod +x play.jar
+
+6.不在当前文件架下运行程序
+java -classpath=./1_hello_the_world Main

@@ -1,0 +1,2 @@
+1.打包生成jar文件
+jar cvf *.class

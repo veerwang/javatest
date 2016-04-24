@@ -1,0 +1,11 @@
+1.生成 javadoc的命令
+javadoc -encoding utf-8 -charset utf-8 Main.java -author
+note
+-author: 是要现实作者的信息
+
+2.注意注解一定要两个**打头否者会被以为是普通注解
+/**			<-------------非常重要
+ * @author  kevin.wang
+ *
+ * @return 返回数值为空
+ */
