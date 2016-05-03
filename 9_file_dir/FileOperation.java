@@ -1,4 +1,5 @@
 import java.io.*;
+import java.io.OutputStreamWriter;
 public class FileOperation {
 	static String Version = "V1.00";
 
@@ -30,9 +31,11 @@ public class FileOperation {
 		{
 			try {
 				file.createNewFile();
-				FileOutputStream out = new FileOutputStream(file);
-				byte[] buf = "time_zone = Asian/Shanghai".getBytes();
-				out.write(buf);
+				OutputStreamWriter out = new OutputStreamWriter(new FileOutputStream("test"),"GBK");
+				String v = new String("time_zone = Asian/Shanghai".getBytes(),"GBK");
+				System.out.println(v);
+				out.write(v);
+				out.flush();
 				out.close();
 			} catch ( Exception e ) {
 				e.printStackTrace();
