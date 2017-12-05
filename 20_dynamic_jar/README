@@ -1,0 +1,11 @@
+1.打包生成jar文件
+jar cvf *.class
+
+编译过程
+a.编译主执行文件
+  a.1 javac Main.java
+  b.2 java Main
+
+b.编译jar包
+  b.1 javac com/kevin/utils/Tools.java
+  b.2 jar cvf com/kevin/utils/Tools.jar com/kevin/utils/Tools.class
