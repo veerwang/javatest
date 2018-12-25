@@ -1,0 +1,28 @@
+1.创建android工程
+./android  create project --target 1 --name MyFirstApp --path /home/landi/android-app-test/MyFirstApp --activity MyFistActivity --package com.example.myapp
+
+2.显示工程
+./android list target
+
+3.生成资源R.java文件
+./aapt p -m -J /home/landi/android-app-test/MyFirstApp/gen -S /home/landi/android-app-test/MyFirstApp/res -I /home/landi/tools/android-sdk-linux/platforms/android-22/android.jar -M /home/landi/android-app-test/MyFirstApp/AndroidManifest.xml
+
+4.进行java文件的编译
+javac -encoding utf-8 -target 1.7 -bootclasspath /home/landi/tools/android-sdk-linux/platforms/android-22/android.jar -d /home/landi/android-app-test/MyFirstApp/bin/ /home/landi/android-app-test/MyFirstApp/src/com/example/myapp/*.java /home/landi/android-app-test/MyFirstApp/gen/com/example/myapp/R.java
+
+5.生成dex文件
+./dx --dex --output /home/landi/android-app-test/MyFirstApp/bin/classes.dex /home/landi/android-app-test/MyFirstApp/bin
+
+6.资源打包
+./aapt p -f -S /home/landi/android-app-test/MyFirstApp/res -I /home/landi/tools/android-sdk-linux/platforms/android-22/android.jar -M /home/landi/android-app-test/MyFirstApp/AndroidManifest.xml -F /home/landi/android-app-test/MyFirstApp/bin/MyFirstApp.ap_
+
+7.添加文件到apk
+./aapt a /home/landi/android-app-test/MyFirstApp/bin/MyFirstApp.apk /home/landi/android-app-test/MyFirstApp/bin/classes.dex (注意 classes.dex是在根目录)
+或
+java -cp ../../tools/lib/sdklib.jar com.android.sdklib.build.ApkBuilderMain /home/landi/android-app-test/MyFirstApp/bin/MyFirstApp_unsigner.apk -v -u -z /home/landi/android-app-test/MyFirstApp/bin/MyFirstApp.ap_ -f /home/landi/android-app-test/MyFirstApp/bin/classes.dex -rf /home/landi/android-app-test/MyFirstApp/src
+
+8.生成keytool
+keytool -genkey -alias MyFirstApp.keystore -keyalg RSA -validity 1000 -keystore MyFirstApp.keystore -dname CN=w,OU=w,O=localhost,L=w,ST=w,C=CN -keypass 123456 -storepass 123456
+
+9.进行签名
+jarsigner -verbose -keystore  MyFirstApp.keystore -signedjar ./bin/MyFirstApp.apk ./bin/MyFirstApp_unsigner.apk MyFirstApp.keystore

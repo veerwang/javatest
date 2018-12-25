@@ -15,7 +15,7 @@ javac Main
 
 5.将java程序打包成为可执行的jar包
 a.jar cvf play.jar *.class
-b.vim play.jar 在MANIFEST:中添加Main-Class:Main
+b.vim play.jar 在MANIFEST:中添加Main-Class: Main  注意要有空格
 c.chmod +x play.jar
 
 6.不在当前文件架下运行程序
