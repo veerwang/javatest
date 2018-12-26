@@ -1,4 +1,5 @@
 package com.kevin.utils; 
+
 public class Tools {
 	public void printMemory(){
 		Runtime rt = Runtime.getRuntime();
