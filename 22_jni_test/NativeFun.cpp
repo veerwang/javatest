@@ -17,9 +17,21 @@
  * =====================================================================================
  */
 
+#include <string.h>
+
 #include "NativeFun.h"
 
 JNIEXPORT jint JNICALL Java_NativeFun_addFunction (JNIEnv *env, jobject obj, jint x, jint y)
 {
 	return x + y;
+}
+
+JNIEXPORT jstring JNICALL Java_NativeFun_makever (JNIEnv *env, jobject obj, jstring input)
+{
+	const char* str = (env)->GetStringUTFChars(input, 0);
+	char rawstr[128];
+	strcpy(rawstr,str);
+	strcat(rawstr," -ext");
+	(env)->ReleaseStringUTFChars(input, 0);
+     	return (env)->NewStringUTF(rawstr);
 }
