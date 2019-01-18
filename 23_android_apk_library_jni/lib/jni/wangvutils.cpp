@@ -23,7 +23,19 @@
 #include <cstdlib>
 #include <cstdio>
 
-static int g_version = 100;
+JNIEXPORT jint JNICALL Java_com_security_landicorp_vulnerabilitydetect_JNIHub_getVersion (JNIEnv *env, jobject obj)
+{
+	Wangvutils wvu;
+	return wvu.getVersion();
+}
+
+JNIEXPORT void JNICALL Java_com_security_landicorp_vulnerabilitydetect_JNIHub_printVersion (JNIEnv *, jobject)
+{
+	Wangvutils wvu;
+	return wvu.printVersion();
+}
+
+static int g_version = 192;
 /*
  *--------------------------------------------------------------------------------------
  *       Class:  Wangvutils
