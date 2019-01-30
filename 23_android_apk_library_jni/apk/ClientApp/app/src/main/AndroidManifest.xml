@@ -10,13 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-	<service
-		android:name="com.security.landicorp.vulnerabilitydetect.RemoteService">
-            <intent-filter>
-                <action android:name="landicorp.intent.action.BIND_REMOTE_SERVICE" />
-            </intent-filter>
-        </service>
-
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
