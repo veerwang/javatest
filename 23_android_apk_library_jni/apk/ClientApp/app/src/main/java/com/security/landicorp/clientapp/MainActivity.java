@@ -73,7 +73,6 @@ public class MainActivity extends AppCompatActivity {
 	    bindService(localIntent, mRemoteConnection, BIND_AUTO_CREATE);
 
 	    mIntentFilter = new IntentFilter();     
-	    mIntentFilter.addAction("com.android.action.broadcast");     
 	    mIntentFilter.addAction("com.android.action.sticky.broadcast");  
 
 	    Log.v(MainActivity.ACTIVITY_TAG,"kevin --->  client:Create");  
@@ -104,4 +103,19 @@ public class MainActivity extends AppCompatActivity {
 	    Toast toast = Toast.makeText(context, text, duration);
 	    toast.show();
     }
+
+    @Override  
+    protected void onResume() {  
+	    // TODO Auto-generated method stub  
+	    super.onResume();  
+	    registerReceiver(mReceiver, mIntentFilter);  
+    }  
+
+    @Override  
+    protected void onPause() {  
+	    // TODO Auto-generated method stub  
+	    super.onPause();  
+	    unregisterReceiver(mReceiver);  
+    }  
+
 }
