@@ -17,6 +17,9 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.Context;
 
+import android.content.BroadcastReceiver;  
+import android.content.IntentFilter;  
+
 import android.util.Log;
 
 import java.io.IOException;
@@ -31,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
     private static final String ACTIVITY_TAG = "ClientApp"; 
 
     IRemoteService mIRemoteService;
+
+    private IntentFilter mIntentFilter; 
 
     private ServiceConnection mRemoteConnection = new ServiceConnection() {
 	    public void onServiceConnected(ComponentName className, IBinder service) {
@@ -67,8 +72,22 @@ public class MainActivity extends AppCompatActivity {
 	    localIntent.setClassName("com.security.landicorp.vulnerabilitydetect","com.security.landicorp.vulnerabilitydetect.RemoteService");
 	    bindService(localIntent, mRemoteConnection, BIND_AUTO_CREATE);
 
+	    mIntentFilter = new IntentFilter();     
+	    mIntentFilter.addAction("com.android.action.broadcast");     
+	    mIntentFilter.addAction("com.android.action.sticky.broadcast");  
+
 	    Log.v(MainActivity.ACTIVITY_TAG,"kevin --->  client:Create");  
     }
+
+    private BroadcastReceiver  mReceiver = new BroadcastReceiver () {
+	    @Override
+	    public void onReceive(Context context, Intent intent) {
+		    final String action = intent.getAction();
+		    int count = intent.getIntExtra("sent_count", -1);
+		    Log.v(MainActivity.ACTIVITY_TAG, "kevin ---> action = " + action + "and count = " + count);
+		    //context.removeStickyBroadcast(intent);
+	    }
+    };
 
     @Override
     protected void onDestroy() {
