@@ -1,0 +1,58 @@
+/*设置脚本运行环境*/
+buildscript{
+    println '------buildscript configire phase---------'
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:1.3.0'
+
+    }
+
+}
+
+/*为所有项目设置通用的选项*/
+allprojects {
+    /*查看该行信息打印的次数，应该是有几个项目（有几个build.gradle文件），打印几次*/
+    println '----------allprojects configure phase---------'
+    repositories {
+        jcenter()
+    }
+}
+
+task clean(type:Delete){
+    println '---------- clean configure phase-----------'
+    delete rootProject.buildDir
+
+}
+
+apply plugin: 'com.android.application'
+
+/*设置编译Android项目的参数*/
+
+android {
+    println '---------android configure phase --------'
+    buildToolsVersion "28.0.3"
+    compileSdkVersion 26 
+
+    sourceSets{
+        main{
+           /*
+                路径为build.gradle为基准的相对路径
+                指定到包名起始路径即可
+                设置java代码路径
+            */
+           java.srcDirs 'src'
+ 
+          /* 设置res资源路径
+            换了一种写法
+            */
+           res {
+               srcDirs 'res'
+           }
+        /*指定manifest路径*/
+          manifest.srcFile 'AndroidManifest.xml'
+        }
+
+    }
+}

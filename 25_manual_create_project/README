@@ -1,0 +1,18 @@
+                                                     使用命令行与gradle创建工程
+
+参考网站
+参考1：http://www.iloveandroid.net/2015/09/16/GradleHelloworld/
+参考2：https://blog.csdn.net/innost/article/details/48228651
+
+使用命令行以及gradle创建APP工程
+1. 创建app工程
+android create project --target android-22 --name MyTestApp --path MyTestApp \
+--activity MyActivity --package com.example.mytestapp
+
+2.进入该app工程，运行如下命令
+gradle wrapper --gradle-version 2.4
+
+3.创建build.gradle
+参考1中的文档说明
+
+不过最方便的方式还是AndroidStudio创建工程，然后使用gradle命令进行编译
